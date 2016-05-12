@@ -64,7 +64,7 @@ public class TipSanki extends AbstractObjekat{
 
     @Override
     public String toString() {
-        return NazivTipa;
+        return TipSankiID;
     }
 
     @Override
