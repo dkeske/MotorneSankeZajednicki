@@ -60,7 +60,7 @@ public class Servis extends AbstractObjekat{
 
     @Override
     public String vratiImeTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "servis";
     }
 
     @Override
