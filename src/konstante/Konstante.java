@@ -30,6 +30,8 @@ public interface Konstante {
     public static final int UCITAJ_LISTU_MOTORNIH_SANKI = 17;
     public static final int UCITAJ_LISTU_REZERVACIJA = 18;
     public static final int ULOGUJ_KORISNIKA = 19;
+    public static final int OBRISI_KORISNIKA = 20;
+    
     
     
 }
