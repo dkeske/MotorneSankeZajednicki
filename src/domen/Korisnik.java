@@ -30,14 +30,14 @@ public class Korisnik extends AbstractObjekat {
         this.korisnikID = korisnikID;
         this.ime = ime;
         this.korisnickoIme = korisnickoIme;
-        this.setPassword(password);
+        this.password = password;
     }
 
     public Korisnik(String korisnikID, String ime, String korisnickoIme, String password, boolean ulogovan) {
         this.korisnikID = korisnikID;
         this.ime = ime;
         this.korisnickoIme = korisnickoIme;
-        this.setPassword(password);
+        this.password = password;
         this.ulogovan = ulogovan;
     }
 
@@ -45,7 +45,7 @@ public class Korisnik extends AbstractObjekat {
     public Korisnik(String ime, String korisnickoIme, String password, boolean ulogovan) {
         this.ime = ime;
         this.korisnickoIme = korisnickoIme;
-        this.setPassword(password);
+        this.password = password;
         this.ulogovan = ulogovan;
     }
 
@@ -85,7 +85,7 @@ public class Korisnik extends AbstractObjekat {
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s','%s','%s','%s'", korisnikID, ime, korisnickoIme, password);
+        return String.format("'%s','%s','%s','%s', 0", korisnikID, ime, korisnickoIme, password);
     }
 
     @Override
@@ -161,8 +161,11 @@ public class Korisnik extends AbstractObjekat {
     }
 
     public void setPassword(String password) {
-        String pw = DigestUtils.sha256Hex(password);
-        this.password = pw;
+        this.password = password;
+    }
+    
+    public void setHashPassword(String pass){
+        this.password = DigestUtils.sha256Hex(password);
     }
 
     public boolean isUlogovan() {
