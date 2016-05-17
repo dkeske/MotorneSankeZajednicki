@@ -22,11 +22,31 @@ public class Korisnik extends AbstractObjekat {
     private String ime;
     private String korisnickoIme;
     private String password;
-
-    public Korisnik(String ime, String korisnickoIme, String password) {
+    private boolean ulogovan;
+    
+    public Korisnik() {
+    }
+    public Korisnik(String korisnikID, String ime, String korisnickoIme, String password) {
+        this.korisnikID = korisnikID;
         this.ime = ime;
         this.korisnickoIme = korisnickoIme;
-        this.password = password;
+        this.setPassword(password);
+    }
+
+    public Korisnik(String korisnikID, String ime, String korisnickoIme, String password, boolean ulogovan) {
+        this.korisnikID = korisnikID;
+        this.ime = ime;
+        this.korisnickoIme = korisnickoIme;
+        this.setPassword(password);
+        this.ulogovan = ulogovan;
+    }
+
+
+    public Korisnik(String ime, String korisnickoIme, String password, boolean ulogovan) {
+        this.ime = ime;
+        this.korisnickoIme = korisnickoIme;
+        this.setPassword(password);
+        this.ulogovan = ulogovan;
     }
 
     @Override
@@ -56,16 +76,6 @@ public class Korisnik extends AbstractObjekat {
             return false;
         }
         return true;
-    }
-
-    public Korisnik() {
-    }
-
-    public Korisnik(String korisnikID, String ime, String korisnickoIme, String password) {
-        this.korisnikID = korisnikID;
-        this.ime = ime;
-        this.korisnickoIme = korisnickoIme;
-        this.setPassword(password);
     }
 
     @Override
@@ -98,7 +108,8 @@ public class Korisnik extends AbstractObjekat {
                 String Ime = rs.getString("ime");
                 String KorisnickoIme = rs.getString("KorisnickoIme");
                 String Password = rs.getString("Password");
-                Korisnik k = new Korisnik(KorisnikID, Ime, KorisnickoIme, Password);
+                boolean Ulogovan = rs.getBoolean("Ulogovan");
+                Korisnik k = new Korisnik(KorisnikID, Ime, KorisnickoIme, Password, Ulogovan);
                 korisnici.add(k);
             } 
             }
@@ -111,6 +122,14 @@ public class Korisnik extends AbstractObjekat {
     @Override
     public String vratiUpdate() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public String getStatusText(){
+        if(ulogovan == false){
+            return "Nije ulogovan";
+        } else {
+            return "Ulogovan";
+        }
     }
 
     public String getKorisnikID() {
@@ -144,6 +163,14 @@ public class Korisnik extends AbstractObjekat {
     public void setPassword(String password) {
         String pw = DigestUtils.sha256Hex(password);
         this.password = pw;
+    }
+
+    public boolean isUlogovan() {
+        return ulogovan;
+    }
+
+    public void setUlogovan(boolean ulogovan) {
+        this.ulogovan = ulogovan;
     }
 
 }
