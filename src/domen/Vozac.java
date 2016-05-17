@@ -65,7 +65,7 @@ public class Vozac extends AbstractObjekat{
 
     @Override
     public String vratiParametre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return String.format("'%s', '%s', '%s', '%s'", VozacID, DatumPrveVoznje, Ime, Mail);
     }
 
     @Override
