@@ -74,7 +74,7 @@ public class TipSanki extends AbstractObjekat{
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s', '%s', '%s', '%d'", TipSankiID, NazivTipa, Namena, DuzinaKrampona);
+        return String.format("'%s', '%s', '%,.2f'", NazivTipa, Namena, DuzinaKrampona);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class TipSanki extends AbstractObjekat{
 
     @Override
     public String vratiUpdate() {
-        return String.format("TipSankiID='%s',NazivTipa='%s',Namena='%s',DuzinaKrampona='%d'", TipSankiID, NazivTipa, Namena, DuzinaKrampona);
+        return String.format("NazivTipa='%s',Namena='%s',DuzinaKrampona='%d'", NazivTipa, Namena, DuzinaKrampona);
     }
     
     

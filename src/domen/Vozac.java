@@ -6,6 +6,8 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +15,8 @@ import java.util.List;
  *
  * @author Daniel
  */
-public class Vozac extends AbstractObjekat{
+public class Vozac extends AbstractObjekat {
+
     private String VozacID;
     private Date DatumPrveVoznje;
     private String Ime;
@@ -25,7 +28,7 @@ public class Vozac extends AbstractObjekat{
         this.Ime = Ime;
         this.Mail = Mail;
     }
-    
+
     public String getVozacID() {
         return VozacID;
     }
@@ -65,27 +68,41 @@ public class Vozac extends AbstractObjekat{
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s', '%s', '%s', '%s'", VozacID, DatumPrveVoznje, Ime, Mail);
+        return String.format("'%s', '%s', '%s'", DatumPrveVoznje, Ime, Mail);
     }
 
     @Override
     public String vratiPK() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "VozacID";
     }
 
     @Override
     public String vratiVrednostPK() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return VozacID;
     }
 
     @Override
     public List<AbstractObjekat> RSuTabelu(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<AbstractObjekat> vozaci = new ArrayList<>();
+        try {
+            while (rs.next()) {
+
+                String VozacID = rs.getString("VozacID");
+                Date DatumPrveVoznje = rs.getDate("DatumPrveVoznje");
+                String Ime = rs.getString("Ime");
+                String Mail = rs.getString("Mail");
+                Vozac vo = new Vozac(VozacID, DatumPrveVoznje, Ime, Mail);
+                vozaci.add(vo);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Greska RSuTabelu kod motornih sanki");
+        }
+        return vozaci;
     }
 
     @Override
     public String vratiUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return String.format("DatumPrveVoznje=%s, Ime=%s, Mail=%s", DatumPrveVoznje, Ime, Mail);
     }
-    
+
 }

@@ -14,7 +14,8 @@ import java.util.List;
  *
  * @author Daniel
  */
-public class MotorneSanke extends AbstractObjekat{
+public class MotorneSanke extends AbstractObjekat {
+
     private String MotorneSankeID;
     private String BrojSasije;
     private String BrojMestaZaSedenje;
@@ -23,13 +24,12 @@ public class MotorneSanke extends AbstractObjekat{
     public MotorneSanke() {
     }
 
-    public MotorneSanke(String MotorneSankeID, String BrojSasije, String BrojMestaZaSedenje, TipSanki TipSankiID) {
-        this.MotorneSankeID = MotorneSankeID;
+    public MotorneSanke(String BrojSasije, String BrojMestaZaSedenje, TipSanki TipSankiID) {
         this.BrojSasije = BrojSasije;
         this.BrojMestaZaSedenje = BrojMestaZaSedenje;
         this.TipSanki = TipSankiID;
     }
-    
+
     @Override
     public String toString() {
         return "MotorneSanke{" + "MotorneSankeID=" + MotorneSankeID + ", BrojSasije=" + BrojSasije + ", BrojMestaZaSedenje=" + BrojMestaZaSedenje + ", TipSanki=" + TipSanki + '}';
@@ -42,7 +42,7 @@ public class MotorneSanke extends AbstractObjekat{
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s', '%s', '%s', '%s'", MotorneSankeID, BrojSasije, BrojMestaZaSedenje, TipSanki.getTipSankiID());
+        return String.format("'%s', '%s', '%s'", BrojSasije, BrojMestaZaSedenje, TipSanki.getTipSankiID());
     }
 
     @Override
@@ -59,25 +59,24 @@ public class MotorneSanke extends AbstractObjekat{
     public List<AbstractObjekat> RSuTabelu(ResultSet rs) {
         List<AbstractObjekat> motorneSanke = new ArrayList<>();
         try {
-            while(rs.next()){
+            while (rs.next()) {
 
                 String motorneSankeID = rs.getString("MotorneSankeID");
                 String brojSasije = rs.getString("BrojSasije");
                 String brojMesta = rs.getString("BrojMestaZaSedenje");
                 String tipSankiID = rs.getString("TipSankiID");
-                MotorneSanke ms = new MotorneSanke(motorneSankeID, brojSasije, brojMesta, new TipSanki(tipSankiID, null, null, 0));
+                MotorneSanke ms = new MotorneSanke(brojSasije, brojMesta, new TipSanki(tipSankiID, null, null, 0));
                 motorneSanke.add(ms);
-                } 
             }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("Greska RSuTabelu kod motornih sanki");
-            }
+        }
         return motorneSanke;
     }
 
     @Override
     public String vratiUpdate() {
-        return String.format("MotorneSankeID='%s',BroSasije='%s',BrojMestaZaSedenje='%s',TipSankiID='%s'", MotorneSankeID, BrojSasije, BrojMestaZaSedenje, TipSanki.getTipSankiID());
+        return String.format("BroSasije='%s',BrojMestaZaSedenje='%s',TipSankiID='%s'", BrojSasije, BrojMestaZaSedenje, TipSanki.getTipSankiID());
     }
 
     public String getMotorneSankeID() {

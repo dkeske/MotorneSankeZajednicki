@@ -64,7 +64,7 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
 
     @Override
     public String vratiParametre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return String.format("'%s', '%s', '%s'", RezervacijaVoznje.getRezevacijaID(), MotorneSanke.getMotorneSankeID(), RedniBrojStavke);
     }
 
     @Override

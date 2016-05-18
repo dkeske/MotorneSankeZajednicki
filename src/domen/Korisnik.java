@@ -23,24 +23,15 @@ public class Korisnik extends AbstractObjekat {
     private String korisnickoIme;
     private String password;
     private boolean ulogovan;
-    
+
     public Korisnik() {
     }
-    public Korisnik(String korisnikID, String ime, String korisnickoIme, String password) {
-        this.korisnikID = korisnikID;
+
+    public Korisnik(String ime, String korisnickoIme, String password) {
         this.ime = ime;
         this.korisnickoIme = korisnickoIme;
         this.password = password;
     }
-
-    public Korisnik(String korisnikID, String ime, String korisnickoIme, String password, boolean ulogovan) {
-        this.korisnikID = korisnikID;
-        this.ime = ime;
-        this.korisnickoIme = korisnickoIme;
-        this.password = password;
-        this.ulogovan = ulogovan;
-    }
-
 
     public Korisnik(String ime, String korisnickoIme, String password, boolean ulogovan) {
         this.ime = ime;
@@ -85,7 +76,7 @@ public class Korisnik extends AbstractObjekat {
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s','%s','%s','%s', 0", korisnikID, ime, korisnickoIme, password);
+        return String.format("'%s','%s','%s', 0", ime, korisnickoIme, password);
     }
 
     @Override
@@ -102,20 +93,19 @@ public class Korisnik extends AbstractObjekat {
     public List<AbstractObjekat> RSuTabelu(ResultSet rs) {
         List<AbstractObjekat> korisnici = new ArrayList<>();
         try {
-            while(rs.next()){
+            while (rs.next()) {
 
                 String KorisnikID = rs.getString("KorisnikID");
                 String Ime = rs.getString("ime");
                 String KorisnickoIme = rs.getString("KorisnickoIme");
                 String Password = rs.getString("Password");
                 boolean Ulogovan = rs.getBoolean("Ulogovan");
-                Korisnik k = new Korisnik(KorisnikID, Ime, KorisnickoIme, Password, Ulogovan);
+                Korisnik k = new Korisnik(Ime, KorisnickoIme, Password, Ulogovan);
                 korisnici.add(k);
-            } 
             }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("Greska RSuTabelu kod motornih sanki");
-            }
+        }
         return korisnici;
     }
 
@@ -123,9 +113,9 @@ public class Korisnik extends AbstractObjekat {
     public String vratiUpdate() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public String getStatusText(){
-        if(ulogovan == false){
+
+    public String getStatusText() {
+        if (ulogovan == false) {
             return "Nije ulogovan";
         } else {
             return "Ulogovan";
@@ -163,8 +153,8 @@ public class Korisnik extends AbstractObjekat {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public void setHashPassword(String pass){
+
+    public void setHashPassword(String pass) {
         this.password = DigestUtils.sha256Hex(password);
     }
 
