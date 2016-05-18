@@ -24,10 +24,11 @@ public class MotorneSanke extends AbstractObjekat {
     public MotorneSanke() {
     }
 
-    public MotorneSanke(String BrojSasije, String BrojMestaZaSedenje, TipSanki TipSankiID) {
+    public MotorneSanke(String MotorneSankeID, String BrojSasije, String BrojMestaZaSedenje, TipSanki TipSanki) {
+        this.MotorneSankeID = MotorneSankeID;
         this.BrojSasije = BrojSasije;
         this.BrojMestaZaSedenje = BrojMestaZaSedenje;
-        this.TipSanki = TipSankiID;
+        this.TipSanki = TipSanki;
     }
 
     @Override
@@ -65,7 +66,7 @@ public class MotorneSanke extends AbstractObjekat {
                 String brojSasije = rs.getString("BrojSasije");
                 String brojMesta = rs.getString("BrojMestaZaSedenje");
                 String tipSankiID = rs.getString("TipSankiID");
-                MotorneSanke ms = new MotorneSanke(brojSasije, brojMesta, new TipSanki(tipSankiID, null, null, 0));
+                MotorneSanke ms = new MotorneSanke(motorneSankeID, brojSasije, brojMesta, new TipSanki(tipSankiID, null, null, 0));
                 motorneSanke.add(ms);
             }
         } catch (SQLException ex) {
@@ -109,5 +110,10 @@ public class MotorneSanke extends AbstractObjekat {
 
     public void setTipSanki(TipSanki TipSanki) {
         this.TipSanki = TipSanki;
+    }
+
+    @Override
+    public String vratiSlozenPK() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

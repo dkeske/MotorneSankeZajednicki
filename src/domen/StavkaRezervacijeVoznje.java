@@ -69,7 +69,7 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
 
     @Override
     public String vratiPK() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
@@ -84,6 +84,11 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
 
     @Override
     public String vratiUpdate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String vratiSlozenPK() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

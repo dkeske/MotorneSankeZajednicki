@@ -27,13 +27,8 @@ public class Korisnik extends AbstractObjekat {
     public Korisnik() {
     }
 
-    public Korisnik(String ime, String korisnickoIme, String password) {
-        this.ime = ime;
-        this.korisnickoIme = korisnickoIme;
-        this.password = password;
-    }
-
-    public Korisnik(String ime, String korisnickoIme, String password, boolean ulogovan) {
+    public Korisnik(String korisnikID, String ime, String korisnickoIme, String password, boolean ulogovan) {
+        this.korisnikID = korisnikID;
         this.ime = ime;
         this.korisnickoIme = korisnickoIme;
         this.password = password;
@@ -100,7 +95,7 @@ public class Korisnik extends AbstractObjekat {
                 String KorisnickoIme = rs.getString("KorisnickoIme");
                 String Password = rs.getString("Password");
                 boolean Ulogovan = rs.getBoolean("Ulogovan");
-                Korisnik k = new Korisnik(Ime, KorisnickoIme, Password, Ulogovan);
+                Korisnik k = new Korisnik(KorisnikID, Ime, KorisnickoIme, Password, Ulogovan);
                 korisnici.add(k);
             }
         } catch (SQLException ex) {
@@ -164,6 +159,11 @@ public class Korisnik extends AbstractObjekat {
 
     public void setUlogovan(boolean ulogovan) {
         this.ulogovan = ulogovan;
+    }
+
+    @Override
+    public String vratiSlozenPK() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

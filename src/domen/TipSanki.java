@@ -111,6 +111,11 @@ public class TipSanki extends AbstractObjekat{
     public String vratiUpdate() {
         return String.format("NazivTipa='%s',Namena='%s',DuzinaKrampona='%d'", NazivTipa, Namena, DuzinaKrampona);
     }
+
+    @Override
+    public String vratiSlozenPK() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     
