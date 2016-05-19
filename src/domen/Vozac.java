@@ -29,6 +29,9 @@ public class Vozac extends AbstractObjekat {
         this.Mail = Mail;
     }
 
+    public Vozac() {
+    }
+
     public String getVozacID() {
         return VozacID;
     }

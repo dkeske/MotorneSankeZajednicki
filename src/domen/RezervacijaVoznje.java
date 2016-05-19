@@ -20,12 +20,17 @@ public class RezervacijaVoznje extends AbstractObjekat{
     private Date DatumRezervacije;
     private boolean UplataUnapred;
     private Vozac vozac;
+    private List<StavkaRezervacijeVoznje> listaStavki;
 
-    public RezervacijaVoznje(String RezevacijaID, Date DatumRezervacije, boolean UplataUnapred, Vozac vozac) {
+    public RezervacijaVoznje() {
+    }
+
+    public RezervacijaVoznje(String RezevacijaID, Date DatumRezervacije, boolean UplataUnapred, Vozac vozac, List<StavkaRezervacijeVoznje> listaStavki) {
         this.RezevacijaID = RezevacijaID;
         this.DatumRezervacije = DatumRezervacije;
         this.UplataUnapred = UplataUnapred;
         this.vozac = vozac;
+        this.listaStavki = listaStavki;
     }
 
     public String getRezevacijaID() {
@@ -91,12 +96,12 @@ public class RezervacijaVoznje extends AbstractObjekat{
                 Date datumRezervacije = rs.getDate("DatumRezervacije");
                 boolean uplataUnapred = rs.getBoolean("UplataUnapred");
                 String vozacID = rs.getString("VozacID");
-                RezervacijaVoznje rv = new RezervacijaVoznje(rezervacijaID, datumRezervacije, uplataUnapred, new Vozac(vozacID, null, null, null));
+                RezervacijaVoznje rv = new RezervacijaVoznje(rezervacijaID, datumRezervacije, uplataUnapred, new Vozac(vozacID, null, null, null), new ArrayList<StavkaRezervacijeVoznje>());
                 
                 rezervacije.add(rv);
             }
         } catch (Exception e) {
-            System.out.println("Greska kod stavki rezervacije.");
+            System.out.println("Greska kod rezervacije.");
         }
         return rezervacije;
     }
@@ -109,6 +114,19 @@ public class RezervacijaVoznje extends AbstractObjekat{
     @Override
     public String vratiSlozenPK() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<StavkaRezervacijeVoznje> getListaStavki() {
+        return listaStavki;
+    }
+
+    public void setListaStavki(List<StavkaRezervacijeVoznje> listaStavki) {
+        this.listaStavki = listaStavki;
+    }
+
+    @Override
+    public String toString() {
+        return "RezervacijaVoznje{" + "RezevacijaID=" + RezevacijaID + ", DatumRezervacije=" + DatumRezervacije + ", UplataUnapred=" + UplataUnapred + ", vozac=" + vozac +'}';
     }
     
     

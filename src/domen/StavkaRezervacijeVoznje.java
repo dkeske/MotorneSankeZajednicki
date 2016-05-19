@@ -6,6 +6,7 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,9 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
     private RezervacijaVoznje RezervacijaVoznje;
     private MotorneSanke MotorneSanke;
     private int RedniBrojStavke;
+
+    public StavkaRezervacijeVoznje() {
+    }
 
     public StavkaRezervacijeVoznje(String StavkaRezervacijeID, RezervacijaVoznje RezervacijaVoznje, MotorneSanke MotorneSanke, int RedniBrojStavke) {
         this.StavkaRezervacijeID = StavkaRezervacijeID;
@@ -79,17 +83,37 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
 
     @Override
     public List<AbstractObjekat> RSuTabelu(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<AbstractObjekat> stavke = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                String StavkaRVID = rs.getString("StavkaRVID");
+                String RezervacijaID = rs.getString("RezervacijaID");
+                String MotorneSankeID = rs.getString("MotorneSankeID");
+                int RedniBrojStavkeRB = rs.getInt("RedniBrojStavke");
+                RezervacijaVoznje rez = new RezervacijaVoznje(RezervacijaID, null, false, null, null);
+                MotorneSanke ms = new MotorneSanke(MotorneSankeID, null, null, null);
+                StavkaRezervacijeVoznje srv = new StavkaRezervacijeVoznje(StavkaRVID, rez, ms, RedniBrojStavkeRB);
+                stavke.add(srv);
+            }
+        } catch (Exception e) {
+            System.out.println("Greska kod stavki rezervacije.");
+        }
+        return stavke;
     }
 
     @Override
     public String vratiUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return String.format("MotorneSankeID = %s, RedniBrojStavke = %s", MotorneSanke.getMotorneSankeID(), RedniBrojStavke);
     }
 
     @Override
     public String vratiSlozenPK() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return String.format("StavkaRVID = %s AND RezervacijaID = %s", StavkaRezervacijeID, RezervacijaVoznje.getRezevacijaID());
+    }
+
+    @Override
+    public String toString() {
+        return "StavkaRezervacijeVoznje{" + "StavkaRezervacijeID=" + StavkaRezervacijeID + ", RezervacijaVoznje=" + RezervacijaVoznje + ", MotorneSanke=" + MotorneSanke + ", RedniBrojStavke=" + RedniBrojStavke + '}';
     }
     
     
