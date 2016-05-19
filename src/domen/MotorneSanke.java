@@ -78,7 +78,7 @@ public class MotorneSanke extends AbstractObjekat {
 
     @Override
     public String vratiUpdate() {
-        return String.format("BroSasije='%s',BrojMestaZaSedenje='%s',TipSankiID='%s'", BrojSasije, BrojMestaZaSedenje, TipSanki.getTipSankiID());
+        return String.format("BrojSasije='%s',BrojMestaZaSedenje='%s',TipSankiID='%s'", BrojSasije, BrojMestaZaSedenje, TipSanki.getTipSankiID());
     }
 
     public String getMotorneSankeID() {

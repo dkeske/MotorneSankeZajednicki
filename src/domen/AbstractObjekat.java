@@ -24,6 +24,15 @@ public abstract class AbstractObjekat implements Serializable{
     public abstract String vratiUpdate();
     
     private int status;
+    private String primaryKey;
+
+    public String getPrimaryKey() {
+        return primaryKey;
+    }
+
+    public void setPrimaryKey(String primaryKey) {
+        this.primaryKey = primaryKey;
+    }
 
     public int getStatus() {
         return status;
