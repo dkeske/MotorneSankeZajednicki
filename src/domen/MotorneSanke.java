@@ -34,7 +34,7 @@ public class MotorneSanke extends AbstractObjekat {
 
     @Override
     public String toString() {
-        return "MotorneSanke{" + "MotorneSankeID=" + MotorneSankeID + ", BrojSasije=" + BrojSasije + ", BrojMestaZaSedenje=" + BrojMestaZaSedenje + ", TipSanki=" + TipSanki + '}';
+        return BrojSasije;
     }
 
     @Override

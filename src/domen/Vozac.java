@@ -115,7 +115,7 @@ public class Vozac extends AbstractObjekat {
 
     @Override
     public String toString() {
-        return "Vozac{" + "VozacID=" + VozacID + ", DatumPrveVoznje=" + DatumPrveVoznje + ", Ime=" + Ime + ", Mail=" + Mail + '}';
+        return Ime;
     }
 
     

@@ -126,7 +126,7 @@ public class RezervacijaVoznje extends AbstractObjekat{
 
     @Override
     public String toString() {
-        return "RezervacijaVoznje{" + "RezevacijaID=" + RezevacijaID + ", DatumRezervacije=" + DatumRezervacije + ", UplataUnapred=" + UplataUnapred + ", vozac=" + vozac +'}';
+        return RezevacijaID;
     }
     
     
