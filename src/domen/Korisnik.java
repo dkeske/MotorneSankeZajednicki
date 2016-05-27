@@ -166,4 +166,9 @@ public class Korisnik extends AbstractObjekat {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void postaviVrednostPK(String pk) {
+        this.korisnikID = pk;
+    }
+
 }

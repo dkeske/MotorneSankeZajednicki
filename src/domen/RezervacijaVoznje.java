@@ -74,7 +74,7 @@ public class RezervacijaVoznje extends AbstractObjekat{
     public String vratiParametre() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String datum = sdf.format(DatumRezervacije);
-        return String.format("'%s', '%b', '%s'", datum , UplataUnapred, vozac.getVozacID());
+        return String.format("'%s', '%s', '%d', '%s'",RezevacijaID, datum , (UplataUnapred) ? 1 : 0, vozac.getVozacID());
     }
 
     @Override
@@ -108,7 +108,7 @@ public class RezervacijaVoznje extends AbstractObjekat{
 
     @Override
     public String vratiUpdate() {
-        return String.format("DatumRezervacije='%s',UplataUnapred='%b',VozacID='%s'", DatumRezervacije, UplataUnapred, vozac.getVozacID());
+        return String.format("DatumRezervacije='%s',UplataUnapred='%d',VozacID='%s'", DatumRezervacije, (UplataUnapred) ? 1 : 0, vozac.getVozacID());
     }
 
     @Override
@@ -127,6 +127,11 @@ public class RezervacijaVoznje extends AbstractObjekat{
     @Override
     public String toString() {
         return RezevacijaID;
+    }
+
+    @Override
+    public void postaviVrednostPK(String pk) {
+        this.RezevacijaID = pk;
     }
     
     

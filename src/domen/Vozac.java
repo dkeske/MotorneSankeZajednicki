@@ -118,5 +118,10 @@ public class Vozac extends AbstractObjekat {
         return Ime;
     }
 
+    @Override
+    public void postaviVrednostPK(String pk) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }

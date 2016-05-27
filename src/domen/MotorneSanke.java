@@ -142,5 +142,10 @@ public class MotorneSanke extends AbstractObjekat {
         }
         return true;
     }
+
+    @Override
+    public void postaviVrednostPK(String pk) {
+        this.MotorneSankeID = pk;
+    }
     
 }

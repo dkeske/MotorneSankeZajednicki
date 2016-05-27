@@ -22,17 +22,9 @@ public abstract class AbstractObjekat implements Serializable{
     public abstract String vratiSlozenPK();
     public abstract List<AbstractObjekat> RSuTabelu(ResultSet rs);
     public abstract String vratiUpdate();
+    public abstract void postaviVrednostPK(String pk);
     
     private int status;
-    private String primaryKey;
-
-    public String getPrimaryKey() {
-        return primaryKey;
-    }
-
-    public void setPrimaryKey(String primaryKey) {
-        this.primaryKey = primaryKey;
-    }
 
     public int getStatus() {
         return status;

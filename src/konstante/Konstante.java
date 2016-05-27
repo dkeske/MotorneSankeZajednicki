@@ -33,5 +33,10 @@ public interface Konstante {
     public static final int OBRISI_KORISNIKA = 20;
     
     
+    public static final int STATUS_IZMENJEN = 100;
+    public static final int STATUS_NOVI = 101;
+    public static final int STATUS_OBRISAN = 102;
+    
+    
     
 }

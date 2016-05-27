@@ -68,7 +68,7 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s', '%s', '%s'", RezervacijaVoznje.getRezevacijaID(), MotorneSanke.getMotorneSankeID(), RedniBrojStavke);
+        return String.format("'%s', '%s', '%s', '%s'",StavkaRezervacijeID, RezervacijaVoznje.getRezevacijaID(), MotorneSanke.getMotorneSankeID(), RedniBrojStavke);
     }
 
     @Override
@@ -114,6 +114,11 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
     @Override
     public String toString() {
         return "StavkaRezervacijeVoznje{" + "StavkaRezervacijeID=" + StavkaRezervacijeID + ", RezervacijaVoznje=" + RezervacijaVoznje + ", MotorneSanke=" + MotorneSanke + ", RedniBrojStavke=" + RedniBrojStavke + '}';
+    }
+
+    @Override
+    public void postaviVrednostPK(String pk) {
+        this.StavkaRezervacijeID = pk;
     }
     
     
