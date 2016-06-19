@@ -94,7 +94,7 @@ public class Korisnik extends AbstractObjekat {
                 String Ime = rs.getString("ime");
                 String KorisnickoIme = rs.getString("KorisnickoIme");
                 String Password = rs.getString("Password");
-                boolean Ulogovan = rs.getBoolean("Ulogovan");
+                boolean Ulogovan = false;
                 Korisnik k = new Korisnik(KorisnikID, Ime, KorisnickoIme, Password, Ulogovan);
                 korisnici.add(k);
             }
