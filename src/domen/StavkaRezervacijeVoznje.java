@@ -14,7 +14,6 @@ import java.util.List;
  * @author Daniel
  */
 public class StavkaRezervacijeVoznje extends AbstractObjekat{
-    private String StavkaRezervacijeID;
     private RezervacijaVoznje RezervacijaVoznje;
     private MotorneSanke MotorneSanke;
     private int RedniBrojStavke;
@@ -22,19 +21,10 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
     public StavkaRezervacijeVoznje() {
     }
 
-    public StavkaRezervacijeVoznje(String StavkaRezervacijeID, RezervacijaVoznje RezervacijaVoznje, MotorneSanke MotorneSanke, int RedniBrojStavke) {
-        this.StavkaRezervacijeID = StavkaRezervacijeID;
+    public StavkaRezervacijeVoznje(RezervacijaVoznje RezervacijaVoznje, MotorneSanke MotorneSanke, int RedniBrojStavke) {
         this.RezervacijaVoznje = RezervacijaVoznje;
         this.MotorneSanke = MotorneSanke;
         this.RedniBrojStavke = RedniBrojStavke;
-    }
-
-    public String getStavkaRezervacijeID() {
-        return StavkaRezervacijeID;
-    }
-
-    public void setStavkaRezervacijeID(String StavkaRezervacijeID) {
-        this.StavkaRezervacijeID = StavkaRezervacijeID;
     }
 
     public RezervacijaVoznje getRezervacijaVoznje() {
@@ -68,7 +58,7 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s', '%s', '%s', '%s'",StavkaRezervacijeID, RezervacijaVoznje.getRezevacijaID(), MotorneSanke.getMotorneSankeID(), RedniBrojStavke);
+        return String.format("'%s', '%s', '%s'", RezervacijaVoznje.getRezevacijaID(), MotorneSanke.getMotorneSankeID(), RedniBrojStavke);
     }
 
     @Override
@@ -92,7 +82,7 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
                 int RedniBrojStavkeRB = rs.getInt("RedniBrojStavke");
                 RezervacijaVoznje rez = new RezervacijaVoznje(RezervacijaID, null, false, null, null);
                 MotorneSanke ms = new MotorneSanke(MotorneSankeID, null, null, null);
-                StavkaRezervacijeVoznje srv = new StavkaRezervacijeVoznje(StavkaRVID, rez, ms, RedniBrojStavkeRB);
+                StavkaRezervacijeVoznje srv = new StavkaRezervacijeVoznje(rez, ms, RedniBrojStavkeRB);
                 stavke.add(srv);
             }
         } catch (Exception e) {
@@ -108,17 +98,17 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
 
     @Override
     public String vratiSlozenPK() {
-        return String.format("StavkaRVID = %s AND RezervacijaID = %s", StavkaRezervacijeID, RezervacijaVoznje.getRezevacijaID());
+        return String.format("RedniBrojStavke = %s AND RezervacijaID = %s", RedniBrojStavke, RezervacijaVoznje.getRezevacijaID());
     }
 
     @Override
     public String toString() {
-        return "StavkaRezervacijeVoznje{" + "StavkaRezervacijeID=" + StavkaRezervacijeID + ", RezervacijaVoznje=" + RezervacijaVoznje + ", MotorneSanke=" + MotorneSanke + ", RedniBrojStavke=" + RedniBrojStavke + '}';
+        return "StavkaRezervacijeVoznje{" + ", RezervacijaVoznje=" + RezervacijaVoznje + ", MotorneSanke=" + MotorneSanke + ", RedniBrojStavke=" + RedniBrojStavke + '}';
     }
 
     @Override
     public void postaviVrednostPK(String pk) {
-        this.StavkaRezervacijeID = pk;
+        System.out.println("Nisi implementirao postaviPK u stavka rezervacije");
     }
     
     
