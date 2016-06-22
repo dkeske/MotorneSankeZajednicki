@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -108,7 +109,9 @@ public class RezervacijaVoznje extends AbstractObjekat{
 
     @Override
     public String vratiUpdate() {
-        return String.format("DatumRezervacije='%s',UplataUnapred='%d',VozacID='%s'", DatumRezervacije, (UplataUnapred) ? 1 : 0, vozac.getVozacID());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String datum = sdf.format(DatumRezervacije);
+        return String.format("DatumRezervacije='%s',UplataUnapred='%d',VozacID='%s'", datum, (UplataUnapred) ? 1 : 0, vozac.getVozacID());
     }
 
     @Override
@@ -128,6 +131,33 @@ public class RezervacijaVoznje extends AbstractObjekat{
     public String toString() {
         return RezevacijaID;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.RezevacijaID);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final RezervacijaVoznje other = (RezervacijaVoznje) obj;
+        if (!Objects.equals(this.RezevacijaID, other.RezevacijaID)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
     @Override
     public void postaviVrednostPK(String pk) {

@@ -8,6 +8,7 @@ package domen;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -58,17 +59,17 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s', '%s', '%s'", RezervacijaVoznje.getRezevacijaID(), MotorneSanke.getMotorneSankeID(), RedniBrojStavke);
+        return String.format("'%s', '%s', '%s'", RezervacijaVoznje.getRezevacijaID(), RedniBrojStavke, MotorneSanke.getMotorneSankeID());
     }
 
     @Override
     public String vratiPK() {
-        return null;
+        return "RezervacijaID";
     }
 
     @Override
     public String vratiVrednostPK() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return RezervacijaVoznje.getRezevacijaID();
     }
 
     @Override
@@ -76,7 +77,6 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
         List<AbstractObjekat> stavke = new ArrayList<>();
         try {
             while (rs.next()) {
-                String StavkaRVID = rs.getString("StavkaRVID");
                 String RezervacijaID = rs.getString("RezervacijaID");
                 String MotorneSankeID = rs.getString("MotorneSankeID");
                 int RedniBrojStavkeRB = rs.getInt("RedniBrojStavke");
@@ -86,7 +86,7 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
                 stavke.add(srv);
             }
         } catch (Exception e) {
-            System.out.println("Greska kod stavki rezervacije.");
+            System.out.println("Greska kod stavki rezervacije." + e.getMessage());
         }
         return stavke;
     }
@@ -108,7 +108,36 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
 
     @Override
     public void postaviVrednostPK(String pk) {
-        System.out.println("Nisi implementirao postaviPK u stavka rezervacije");
+        RedniBrojStavke = Integer.parseInt(pk);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + Objects.hashCode(this.RezervacijaVoznje);
+        hash = 31 * hash + this.RedniBrojStavke;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final StavkaRezervacijeVoznje other = (StavkaRezervacijeVoznje) obj;
+        if (this.RedniBrojStavke != other.RedniBrojStavke) {
+            return false;
+        }
+        if (!Objects.equals(this.RezervacijaVoznje, other.RezervacijaVoznje)) {
+            return false;
+        }
+        return true;
     }
     
     
