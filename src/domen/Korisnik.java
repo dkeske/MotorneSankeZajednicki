@@ -71,7 +71,7 @@ public class Korisnik extends AbstractObjekat {
 
     @Override
     public String vratiParametre() {
-        return String.format("'%s','%s','%s', 0", ime, korisnickoIme, password);
+        return String.format("0,'%s','%s','%s'", ime, korisnickoIme, password);
     }
 
     @Override

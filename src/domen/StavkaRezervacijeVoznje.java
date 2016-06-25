@@ -108,7 +108,7 @@ public class StavkaRezervacijeVoznje extends AbstractObjekat{
 
     @Override
     public void postaviVrednostPK(String pk) {
-        RedniBrojStavke = Integer.parseInt(pk);
+//        RedniBrojStavke = Integer.parseInt(pk);
     }
 
     @Override
